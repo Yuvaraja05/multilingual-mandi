@@ -12,7 +12,18 @@ MARKET_DATA = {
     "Tomato": {"price": 20, "trend": "up", "demand": "high"},
     "Onion": {"price": 35, "trend": "stable", "demand": "medium"},
     "Potato": {"price": 18, "trend": "down", "demand": "low"},
-    "Wheat": {"price": 22, "trend": "up", "demand": "high"}
+    "Wheat": {"price": 22, "trend": "up", "demand": "high"},
+    "Rice": {"price": 28, "trend": "up", "demand": "high"},
+    "Carrot": {"price": 25, "trend": "stable", "demand": "medium"},
+    "Cabbage": {"price": 15, "trend": "down", "demand": "low"},
+    "Cauliflower": {"price": 30, "trend": "up", "demand": "high"},
+    "Brinjal": {"price": 22, "trend": "stable", "demand": "medium"},
+    "Okra": {"price": 40, "trend": "up", "demand": "high"},
+    "Green Chili": {"price": 60, "trend": "up", "demand": "high"},
+    "Coriander": {"price": 80, "trend": "stable", "demand": "medium"},
+    "Spinach": {"price": 20, "trend": "down", "demand": "low"},
+    "Garlic": {"price": 120, "trend": "up", "demand": "high"},
+    "Ginger": {"price": 100, "trend": "stable", "demand": "medium"}
 }
 
 # 2. Simulated Translation Layer (The "Bridge")
@@ -91,10 +102,23 @@ def main():
     # 1. Voice/Input Simulation
     st.subheader("🎙️ " + get_translation(lang_code, "welcome"))
     
-    # In a real app, this is a Microphone Button utilizing Web Speech API
-    # Here, we simulate 'Transcribed Text' via a text input
+    # Option 1: Select from dropdown
     crop_input = st.selectbox(get_translation(lang_code, "ask_crop"), 
-                              ["Tomato", "Onion", "Potato", "Wheat"])
+                              ["", "Tomato", "Onion", "Potato", "Wheat", "Rice", "Carrot", 
+                               "Cabbage", "Cauliflower", "Brinjal", "Okra", "Green Chili", 
+                               "Coriander", "Spinach", "Garlic", "Ginger"])
+    
+    # Option 2: Or type crop name
+    if not crop_input:
+        crop_text = st.text_input("Or type crop name / या फसल का नाम टाइप करें")
+        if crop_text:
+            # Find matching crop (case insensitive)
+            for crop in MARKET_DATA.keys():
+                if crop.lower() in crop_text.lower() or crop_text.lower() in crop.lower():
+                    crop_input = crop
+                    break
+            if not crop_input:
+                st.warning(f"Crop '{crop_text}' not found. Available: {', '.join(MARKET_DATA.keys())}")
 
     # 2. Market Intelligence Dashboard
     if crop_input:
