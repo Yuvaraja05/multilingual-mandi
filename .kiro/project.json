@@ -1,0 +1,11 @@
+{
+  "name": "Multilingual Mandi",
+  "description": "AI-powered multilingual agricultural marketplace for Indian farmers",
+  "version": "1.0.0",
+  "author": "Yuvaraja J",
+  "created": "2026-01-26",
+  "challenge": "AI for Bharat 26 Jan Challenge",
+  "technologies": ["Python", "Streamlit", "AI/ML"],
+  "languages": ["Hindi", "Punjabi", "English"],
+  "target_audience": "Indian farmers and agricultural traders"
+}
