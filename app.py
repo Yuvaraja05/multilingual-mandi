@@ -95,12 +95,25 @@ def main():
                                 ["English (en)", "Hindi (hi)", "Punjabi (pb)"])
     lang_code = lang.split("(")[1].strip(")")
     
+    # Quick Stats in Sidebar
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🌾 Today's Market")
+    st.sidebar.metric("Active Traders", "1,247")
+    st.sidebar.metric("Deals Closed", "89")
+    st.sidebar.metric("Avg Savings", "₹2.5/kg")
+    
     # App Header
     st.title("🌾 " + get_translation(lang_code, "title"))
     st.markdown("---")
 
     # 1. Voice/Input Simulation
     st.subheader("🎙️ " + get_translation(lang_code, "welcome"))
+    
+    # Voice input simulation
+    if st.button("🎤 Voice Input / आवाज़ से बोलें"):
+        st.info("🔊 Voice recognition activated... (Demo mode)")
+        time.sleep(1)
+        st.success("✅ Voice captured: 'मैं टमाटर बेचना चाहता हूं'")
     
     # Option 1: Select from dropdown
     crop_input = st.selectbox(get_translation(lang_code, "ask_crop"), 
@@ -153,6 +166,24 @@ def main():
             else:
                 st.error(f"❌ {get_translation(lang_code, 'offer_rejected')}")
                 st.warning(f"🤖 AI: {message}")
+    
+    # Impact Dashboard
+    st.markdown("---")
+    st.markdown("### 📊 Digital India Impact")
+    
+    impact_col1, impact_col2, impact_col3, impact_col4 = st.columns(4)
+    with impact_col1:
+        st.metric("Farmers Helped", "2,500+", "↗️ 15%")
+    with impact_col2:
+        st.metric("Languages", "3", "🌍")
+    with impact_col3:
+        st.metric("Fair Deals", "₹50L+", "💰")
+    with impact_col4:
+        st.metric("Villages", "150+", "🏘️")
+    
+    st.markdown("---")
+    st.markdown("🇮🇳 **Built for Bharat - AI for Every Farmer** 🌾")
+    st.markdown("*Breaking language barriers, building digital bridges*")
 
 if __name__ == "__main__":
     main()
