@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import random
 import time
+from datetime import datetime, timedelta
 
 # --- CONFIGURATION & MOCK DATA ---
 st.set_page_config(page_title="Multilingual Mandi", page_icon="🌾", layout="wide")
@@ -65,6 +66,38 @@ TRANSLATIONS = {
 }
 
 # --- HELPER FUNCTIONS ---
+
+def get_dynamic_price(base_price, crop_name):
+    """Simulate daily price fluctuations based on date and market factors"""
+    today = datetime.now()
+    
+    # Use date as seed for consistent daily prices
+    random.seed(int(today.strftime("%Y%m%d")) + hash(crop_name))
+    
+    # Market factors that affect price
+    seasonal_factor = 1 + (random.random() - 0.5) * 0.3  # ±15% seasonal variation
+    demand_factor = 1 + (random.random() - 0.5) * 0.2   # ±10% demand variation
+    weather_factor = 1 + (random.random() - 0.5) * 0.25  # ±12.5% weather impact
+    
+    # Calculate dynamic price
+    dynamic_price = int(base_price * seasonal_factor * demand_factor * weather_factor)
+    
+    # Ensure price doesn't go too extreme
+    min_price = int(base_price * 0.6)  # Not below 60% of base
+    max_price = int(base_price * 1.4)  # Not above 140% of base
+    
+    return max(min_price, min(max_price, dynamic_price))
+
+def get_price_trend(base_price, current_price):
+    """Determine if price is trending up, down, or stable"""
+    change_percent = ((current_price - base_price) / base_price) * 100
+    
+    if change_percent > 5:
+        return "up"
+    elif change_percent < -5:
+        return "down"
+    else:
+        return "stable"
 
 def get_translation(lang_code, key):
     """Fetches text based on selected language."""
@@ -135,18 +168,41 @@ def main():
 
     # 2. Market Intelligence Dashboard
     if crop_input:
-        data = MARKET_DATA[crop_input]
-        st.info(f"🔍 {get_translation(lang_code, 'analyzing')}")
+        base_data = MARKET_DATA[crop_input]
+        
+        # Get dynamic price for today
+        current_price = get_dynamic_price(base_data['price'], crop_input)
+        trend = get_price_trend(base_data['price'], current_price)
+        
+        # Show price update timestamp
+        st.info(f"🔍 {get_translation(lang_code, 'analyzing')} | Last updated: {datetime.now().strftime('%H:%M:%S')}")
         time.sleep(1) # Simulate AI processing delay
         
         # Display Stats Card
-        col1, col2, col3 = st.columns(3)
+        # Display Stats Card with Dynamic Pricing
+        col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric(label=get_translation(lang_code, "market_rate"), value=f"₹{data['price']}/kg")
+            price_change = current_price - base_data['price']
+            st.metric(
+                label=get_translation(lang_code, "market_rate"), 
+                value=f"₹{current_price}/kg",
+                delta=f"₹{price_change:+d} from base"
+            )
         with col2:
-            st.metric(label="Trend", value=data['trend'].upper(), delta=data['trend'])
+            trend_emoji = "📈" if trend == "up" else "📉" if trend == "down" else "➡️"
+            st.metric(label="Trend", value=trend.upper(), delta=trend_emoji)
         with col3:
-            st.metric(label="Demand", value=data['demand'].upper())
+            demand_emoji = "🔥" if base_data['demand'] == "high" else "⚡" if base_data['demand'] == "medium" else "❄️"
+            st.metric(label="Demand", value=base_data['demand'].upper())
+        with col4:
+            # Show tomorrow's predicted price
+            tomorrow_price = get_dynamic_price(base_data['price'], crop_input + "_tomorrow")
+            price_diff = tomorrow_price - current_price
+            st.metric(
+                label="Tomorrow's Forecast", 
+                value=f"₹{tomorrow_price}/kg",
+                delta=f"₹{price_diff:+d}"
+            )
 
         st.markdown("---")
 
@@ -154,10 +210,10 @@ def main():
         st.write(f"### 🤝 {get_translation(lang_code, 'negotiate')}")
         
         # User makes an offer
-        user_offer = st.number_input(get_translation(lang_code, "your_offer"), min_value=1, max_value=100, value=data['price'])
+        user_offer = st.number_input(get_translation(lang_code, "your_offer"), min_value=1, max_value=200, value=current_price)
         
         if st.button("Confirm Offer / भाव पक्का करें"):
-            decision, message = ai_negotiator(crop_input, user_offer, data['price'])
+            decision, message = ai_negotiator(crop_input, user_offer, current_price)
             
             if decision == "accept":
                 st.success(f"✅ {get_translation(lang_code, 'offer_accepted')}")
