@@ -149,6 +149,61 @@ TRANSLATIONS = {
         "analyzing": "AI ਮਾਰਕੀਟ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ ਕਰ ਰਿਹਾ ਹੈ...",
         "your_offer": "ਤੁਹਾਡੀ ਕੀਮਤ (₹/kg):"
     },
+    "ta": {
+        "title": "பல்மொழி மண்டி (Multilingual Mandi)",
+        "welcome": "வணக்கம்! இன்று நீங்கள் என்ன விற்க விரும்புகிறீர்கள்?",
+        "ask_crop": "பயிரின் பெயரைச் சொல்லுங்கள் (எ.கா: தக்காளி, வெங்காயம்)",
+        "market_rate": "சந்தை விலை",
+        "negotiate": "விலை பேச்சுவார்த்தை",
+        "offer_accepted": "வாழ்த்துக்கள்! ஒப்பந்தம் உறுதி செய்யப்பட்டது।",
+        "offer_rejected": "மன்னிக்கவும், அந்த விலை மிகவும் குறைவு।",
+        "analyzing": "AI சந்தையை பகுப்பாய்வு செய்கிறது...",
+        "your_offer": "உங்கள் விலை (₹/kg):"
+    },
+    "te": {
+        "title": "బహుభాషా మండి (Multilingual Mandi)",
+        "welcome": "నమస్కారం! మీరు ఈరోజు ఏమి అమ్మాలని అనుకుంటున్నారు?",
+        "ask_crop": "పంట పేరు చెప్పండి (ఉదా: టమాటో, ఉల్లిపాయ)",
+        "market_rate": "మార్కెట్ రేట్",
+        "negotiate": "ధర చర్చలు",
+        "offer_accepted": "అభినందనలు! ఒప్పందం ఖరారు అయింది।",
+        "offer_rejected": "క్షమించండి, ఆ ధర చాలా తక్కువ।",
+        "analyzing": "AI మార్కెట్‌ను విశ్లేషిస్తోంది...",
+        "your_offer": "మీ ధర (₹/kg):"
+    },
+    "mr": {
+        "title": "बहुभाषिक मंडी (Multilingual Mandi)",
+        "welcome": "नमस्कार! आज तुम्ही काय विकायचे आहे?",
+        "ask_crop": "पिकाचे नाव सांगा (उदा: टोमॅटो, कांदा)",
+        "market_rate": "बाजार भाव",
+        "negotiate": "भाव मोलमजुरी",
+        "offer_accepted": "अभिनंदन! करार पक्का झाला।",
+        "offer_rejected": "माफ करा, तो भाव खूप कमी आहे।",
+        "analyzing": "AI बाजाराचे विश्लेषण करत आहे...",
+        "your_offer": "तुमचा भाव (₹/kg):"
+    },
+    "gu": {
+        "title": "બહુભાષી મંડી (Multilingual Mandi)",
+        "welcome": "નમસ્તે! આજે તમે શું વેચવા માંગો છો?",
+        "ask_crop": "પાકનું નામ કહો (જેમ કે: ટમેટા, ડુંગળી)",
+        "market_rate": "બજાર ભાવ",
+        "negotiate": "ભાવ તાળ",
+        "offer_accepted": "અભિનંદન! સોદો પાક્કો થયો।",
+        "offer_rejected": "માફ કરશો, તે ભાવ ઘણો ઓછો છે।",
+        "analyzing": "AI બજારનું વિશ્લેષણ કરી રહ્યું છે...",
+        "your_offer": "તમારો ભાવ (₹/kg):"
+    },
+    "bn": {
+        "title": "বহুভাষিক মণ্ডি (Multilingual Mandi)",
+        "welcome": "নমস্কার! আজ আপনি কী বিক্রি করতে চান?",
+        "ask_crop": "ফসলের নাম বলুন (যেমন: টমেটো, পেঁয়াজ)",
+        "market_rate": "বাজার দর",
+        "negotiate": "দর কষাকষি",
+        "offer_accepted": "অভিনন্দন! চুক্তি নিশ্চিত হয়েছে।",
+        "offer_rejected": "দুঃখিত, সেই দাম খুবই কম।",
+        "analyzing": "AI বাজার বিশ্লেষণ করছে...",
+        "your_offer": "আপনার দাম (₹/kg):"
+    },
     "en": {
         "title": "The Multilingual Mandi",
         "welcome": "Hello! What do you want to sell today?",
@@ -230,7 +285,8 @@ def main():
         st.sidebar.caption("Showing enhanced features for AI for Bharat 26 Jan Challenge")
     
     lang = st.sidebar.selectbox("Select Language / भाषा चुनें", 
-                                ["English (en)", "Hindi (hi)", "Punjabi (pb)"])
+                                ["English (en)", "Hindi (hi)", "Punjabi (pb)", "Tamil (ta)", 
+                                 "Telugu (te)", "Marathi (mr)", "Gujarati (gu)", "Bengali (bn)"])
     lang_code = lang.split("(")[1].strip(")")
     
     # Quick Stats in Sidebar with Real-time Updates
@@ -377,7 +433,7 @@ def main():
         st.markdown("#### 🎤 Real Voice Input")
         
         # Audio recording widget
-        audio_bytes = st.audio_input("Record your voice / अपनी आवाज़ रिकॉर्ड करें / ਆਪਣੀ ਆਵਾਜ਼ ਰਿਕਾਰਡ ਕਰੋ")
+        audio_bytes = st.audio_input("Record your voice / अपनी आवाज़ रिकॉर्ड करें / ਆਪਣੀ ਆਵਾਜ਼ ਰਿਕਾਰਡ ਕਰੋ / உங்கள் குரலை பதிவு செய்யுங்கள் / మీ వాయిస్ రికార్డ్ చేయండి")
         
         if audio_bytes is not None:
             st.audio(audio_bytes, format="audio/wav")
@@ -386,30 +442,85 @@ def main():
             with st.spinner("🤖 Processing voice input... / आवाज़ को समझा जा रहा है..."):
                 time.sleep(2)  # Simulate processing time
             
-            # Simulated voice recognition results based on language
-            if lang_code == "hi":
-                recognized_text = "मैं टमाटर बेचना चाहता हूं"
-                english_translation = "I want to sell tomatoes"
-            elif lang_code == "pb":
-                recognized_text = "ਮੈਂ ਟਮਾਟਰ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ"
-                english_translation = "I want to sell tomatoes"
-            else:
-                recognized_text = "I want to sell tomatoes"
-                english_translation = "I want to sell tomatoes"
+            # Simulated voice recognition with random crop selection for demo
+            import random
+            
+            # List of possible crops with translations for all supported languages
+            crops_data = {
+                "Tomato": {
+                    "hi": "मैं टमाटर बेचना चाहता हूं",
+                    "pb": "ਮੈਂ ਟਮਾਟਰ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ",
+                    "ta": "நான் தக்காளி விற்க விரும்புகிறேன்",
+                    "te": "నేను టమాటో అమ్మాలని అనుకుంటున్నాను",
+                    "mr": "मी टोमॅटो विकायचे आहे",
+                    "gu": "હું ટમેટા વેચવા માંગુ છું",
+                    "bn": "আমি টমেটো বিক্রি করতে চাই",
+                    "en": "I want to sell tomatoes"
+                },
+                "Onion": {
+                    "hi": "मैं प्याज बेचना चाहता हूं", 
+                    "pb": "ਮੈਂ ਪਿਆਜ਼ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ",
+                    "ta": "நான் வெங்காயம் விற்க விரும்புகிறேன்",
+                    "te": "నేను ఉల్లిపాయ అమ్మాలని అనుకుంటున్నాను",
+                    "mr": "मी कांदा विकायचा आहे",
+                    "gu": "હું ડુંગળી વેચવા માંગુ છું",
+                    "bn": "আমি পেঁয়াজ বিক্রি করতে চাই",
+                    "en": "I want to sell onions"
+                },
+                "Potato": {
+                    "hi": "मैं आलू बेचना चाहता हूं",
+                    "pb": "ਮੈਂ ਆਲੂ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ", 
+                    "ta": "நான் உருளைக்கிழங்கு விற்க விரும்புகிறேன்",
+                    "te": "నేను బంగాళాదుంప అమ್మాలని అనుకుంటున్నాను",
+                    "mr": "मी बटाटा विकायचा आहे",
+                    "gu": "હું બટાકા વેચવા માંગુ છું",
+                    "bn": "আমি আলু বিক্রি করতে চাই",
+                    "en": "I want to sell potatoes"
+                },
+                "Wheat": {
+                    "hi": "मैं गेहूं बेचना चाहता हूं",
+                    "pb": "ਮੈਂ ਕਣਕ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ",
+                    "ta": "நான் கோதுமை விற்க விரும்புகிறேன்",
+                    "te": "నేను గోధుమ అమ్మాలని అనుకుంటున్నాను",
+                    "mr": "मी गहू विकायचा आहे",
+                    "gu": "હું ઘઉં વેચવા માંગુ છું",
+                    "bn": "আমি গম বিক্রি করতে চাই",
+                    "en": "I want to sell wheat"
+                },
+                "Rice": {
+                    "hi": "मैं चावल बेचना चाहता हूं",
+                    "pb": "ਮੈਂ ਚਾਵਲ ਵੇਚਣਾ ਚਾਹੁੰਦਾ ਹਾਂ",
+                    "ta": "நான் அரிசி விற்க விரும்புகிறேன்",
+                    "te": "నేను బియ్యం అమ్మాలని అనుకుంటున్నాను",
+                    "mr": "मी तांदूळ विकायचा आहे",
+                    "gu": "હું ચોખા વેચવા માંગુ છું",
+                    "bn": "আমি চাল বিক্রি করতে চাই",
+                    "en": "I want to sell rice"
+                }
+            }
+            
+            # Randomly select a crop for demo (simulating different voice inputs)
+            detected_crop = random.choice(list(crops_data.keys()))
+            
+            # Get the text in selected language
+            recognized_text = crops_data[detected_crop][lang_code]
+            english_translation = crops_data[detected_crop]["en"]
+            
+            # Store detected crop for later use
+            st.session_state.voice_detected_crop = detected_crop
             
             # Display recognition results
             st.success(f"✅ **Voice Recognized:** {recognized_text}")
             if lang_code != "en":
                 st.info(f"🔄 **Translation:** {english_translation}")
             
-            # Auto-populate crop selection based on voice input
-            if "tomato" in english_translation.lower() or "टमाटर" in recognized_text or "ਟਮਾਟਰ" in recognized_text:
-                st.success("🎯 **Auto-detected crop:** Tomato")
-                # This would set crop_input = "Tomato" in a real implementation
-            elif "onion" in english_translation.lower() or "प्याज" in recognized_text or "ਪਿਆਜ਼" in recognized_text:
-                st.success("🎯 **Auto-detected crop:** Onion")
-            else:
-                st.info("🔍 Please select crop from dropdown below")
+            # Show auto-detected crop
+            st.success(f"🎯 **Auto-detected crop:** {detected_crop}")
+            
+            # Provide option to use detected crop
+            if st.button(f"✅ Use {detected_crop} from voice input", key="use_voice_crop"):
+                st.session_state.selected_crop = detected_crop
+                st.success(f"🌾 **Selected:** {detected_crop} - proceed to market data below!")
         
         else:
             # Fallback demo button
@@ -427,7 +538,7 @@ def main():
                 st.success("🎯 **Auto-detected crop:** Tomato")
         
         # Voice input instructions
-        st.caption("💡 **Voice Tips:** Speak clearly in Hindi, Punjabi, or English. Say crop names like 'टमाटर', 'ਟਮਾਟਰ', or 'Tomato'")
+        st.caption("💡 **Voice Tips:** Speak clearly in any supported language. Say crop names like 'टमाटर' (Hindi), 'ਟਮਾਟਰ' (Punjabi), 'தக்காளி' (Tamil), 'టమాటో' (Telugu), 'टोमॅटो' (Marathi), 'ટમેટા' (Gujarati), 'টমেটো' (Bengali), or 'Tomato' (English)")
     
     with col2:
         # Rural Accessibility Features
@@ -454,11 +565,23 @@ def main():
             """)
             st.markdown("---")
     
-    # Option 1: Select from dropdown
+    # Option 1: Select from dropdown (with voice input integration)
+    # Check if voice input detected a crop
+    voice_crop = st.session_state.get('selected_crop', '')
+    default_index = 0
+    
+    crop_options = ["", "Tomato", "Onion", "Potato", "Wheat", "Rice", "Carrot", 
+                   "Cabbage", "Cauliflower", "Brinjal", "Okra", "Green Chili", 
+                   "Coriander", "Spinach", "Garlic", "Ginger"]
+    
+    # If voice detected a crop, set it as default
+    if voice_crop and voice_crop in crop_options:
+        default_index = crop_options.index(voice_crop)
+        st.info(f"🎤 **Voice input detected:** {voice_crop} (you can change selection below)")
+    
     crop_input = st.selectbox(get_translation(lang_code, "ask_crop"), 
-                              ["", "Tomato", "Onion", "Potato", "Wheat", "Rice", "Carrot", 
-                               "Cabbage", "Cauliflower", "Brinjal", "Okra", "Green Chili", 
-                               "Coriander", "Spinach", "Garlic", "Ginger"])
+                              crop_options,
+                              index=default_index)
     
     # Option 2: Or type crop name
     if not crop_input:
@@ -895,7 +1018,7 @@ def main():
     with impact_col1:
         st.metric("Farmers Onboarded", "50,000+", "🎯 Target")
     with impact_col2:
-        st.metric("Languages Supported", "12", "🗣️ Indian Languages")
+        st.metric("Languages Supported", "8", "🗣️ Indian Languages")
     with impact_col3:
         st.metric("Revenue Increase", "25%", "📈 For Farmers")
     with impact_col4:
@@ -922,8 +1045,8 @@ def main():
         
         st.markdown("""
         **📈 Growth Strategy:**
-        - **Phase 1**: 3 states, 3 languages (6 months)
-        - **Phase 2**: Pan-India, 12 languages (12 months)  
+        - **Phase 1**: 5 states, 8 languages (6 months)
+        - **Phase 2**: Pan-India, 15+ languages (12 months)  
         - **Phase 3**: Export markets, B2B integration (18 months)
         - **Phase 4**: AI-powered crop advisory (24 months)
         """)
