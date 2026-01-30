@@ -781,73 +781,101 @@ def main():
     st.markdown("---")
     st.write("### �️ Live Buyers Nearby")
     
-    # Simulated Buyer Locations near a central point (e.g., Delhi)
+    # Simulated Buyer Locations across different Indian states
     map_data = pd.DataFrame({
-        'lat': [28.61, 28.55, 28.70, 28.65, 28.58, 28.72, 28.63],
-        'lon': [77.20, 77.25, 77.15, 77.18, 77.22, 77.17, 77.24],
-        'buyer': ['Reliance Fresh', 'BigBasket', 'Local Trader', 'APMC Buyer', 'Export House', 'Food Corp', 'Retail Chain']
+        'lat': [28.61, 19.07, 13.08, 22.57, 26.91, 12.97, 23.02, 21.17],
+        'lon': [77.20, 72.87, 80.27, 88.36, 75.78, 77.59, 72.57, 79.09],
+        'buyer': ['Delhi APMC', 'Mumbai Trader', 'Chennai Export', 'Kolkata Wholesale', 'Jaipur Mandi', 'Bangalore Tech', 'Ahmedabad Co-op', 'Nagpur Organic'],
+        'state': ['Delhi', 'Maharashtra', 'Tamil Nadu', 'West Bengal', 'Rajasthan', 'Karnataka', 'Gujarat', 'Maharashtra']
     })
     
     # Display the map
     st.map(map_data)
     
     # Show buyer details in columns
-    st.write("#### 🏪 Active Buyers in Your Area")
+    st.write("#### 🏪 Active Buyers Across India")
     buyer_col1, buyer_col2, buyer_col3 = st.columns(3)
     
     with buyer_col1:
         st.markdown("""
-        **🛒 Reliance Fresh**
+        **🏛️ Delhi APMC**
+        - State: Delhi NCR
         - Distance: 2.3 km
-        - Buying: Premium vegetables
+        - Buying: All vegetables
         - Rate: Market + ₹2/kg
         - Payment: Instant
         """)
         
         st.markdown("""
-        **📦 BigBasket**
-        - Distance: 4.1 km  
-        - Buying: Organic produce
-        - Rate: Market + ₹3/kg
+        **🌊 Mumbai Trader**
+        - State: Maharashtra
+        - Distance: 1,400 km
+        - Buying: Premium produce
+        - Rate: Market + ₹5/kg
         - Payment: 24 hours
+        """)
+        
+        st.markdown("""
+        **🌴 Chennai Export**
+        - State: Tamil Nadu
+        - Distance: 2,200 km
+        - Buying: Export quality
+        - Rate: Market + ₹8/kg
+        - Payment: Bank transfer
         """)
     
     with buyer_col2:
         st.markdown("""
-        **👨‍💼 Local Trader**
-        - Distance: 1.8 km
+        **🐟 Kolkata Wholesale**
+        - State: West Bengal
+        - Distance: 1,500 km
         - Buying: Bulk quantities
         - Rate: Market rate
         - Payment: Cash on delivery
         """)
         
         st.markdown("""
-        **🏛️ APMC Buyer**
-        - Distance: 3.5 km
-        - Buying: All grades
-        - Rate: Official APMC rate
-        - Payment: Bank transfer
+        **� Jaipur Mandi**
+        - State: Rajasthan
+        - Distance: 280 km
+        - Buying: Traditional crops
+        - Rate: Market + ₹3/kg
+        - Payment: Weekly
+        """)
+        
+        st.markdown("""
+        **💻 Bangalore Tech**
+        - State: Karnataka
+        - Distance: 2,100 km
+        - Buying: Organic produce
+        - Rate: Market + ₹10/kg
+        - Payment: Digital wallet
         """)
     
     with buyer_col3:
         st.markdown("""
-        **🌍 Export House**
-        - Distance: 6.2 km
-        - Buying: Grade A only
-        - Rate: Market + ₹5/kg
-        - Payment: 48 hours
+        **🧂 Ahmedabad Co-op**
+        - State: Gujarat
+        - Distance: 950 km
+        - Buying: Cooperative bulk
+        - Rate: Market + ₹4/kg
+        - Payment: Cooperative fund
         """)
         
         st.markdown("""
-        **🏪 Retail Chain**
-        - Distance: 3.9 km
-        - Buying: Fresh produce
-        - Rate: Market + ₹1/kg
-        - Payment: Weekly
+        **🍊 Nagpur Organic**
+        - State: Maharashtra
+        - Distance: 1,100 km
+        - Buying: Certified organic
+        - Rate: Market + ₹12/kg
+        - Payment: 48 hours
         """)
     
-    # Carbon footprint calculation
-    st.info("🌱 **Carbon Footprint Optimization**: Nearest buyer is 1.8km away, reducing transport emissions by 65% compared to traditional mandis.")
+    # Pan-India coverage highlight
+    st.success("🇮🇳 **Pan-India Coverage**: Buyers from 7 states - Delhi, Maharashtra, Tamil Nadu, West Bengal, Rajasthan, Karnataka, Gujarat")
+    
+    # Enhanced carbon footprint calculation
+    st.info("🌱 **Smart Logistics**: AI optimizes routes across states. Nearest buyer (Delhi APMC) reduces transport costs by 75%. Export opportunities (Chennai) offer premium rates for quality produce.")
     
     # Impact Dashboard with real-time animation + Future Roadmap
     st.markdown("---")
